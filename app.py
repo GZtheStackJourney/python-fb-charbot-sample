@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-import emoji
 from datetime import datetime
 
 import requests
