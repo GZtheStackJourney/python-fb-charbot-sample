@@ -38,10 +38,15 @@ def webhook():
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
                     
-                    send_message(sender_id, "Hi I am a bot!")
-                    
+                    if messaging_event['message'].get('text'):
+                        message_text = messaging_event["message"]["text"]  # the message's text
+                        send_message(sender_id, "Hi I am a bot!")    
+                    if messaging_event['message'].get('sticker_id'):
+                        send_message(sender_id, "Hi I am a bot!")
+                    if messaging_event['message'].get('attachments'):
+                        send_message(sender_id, "Hi I am a bot!")
+                        
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -77,7 +82,14 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
+#def get_message(message_received):
+#    x = message_received.lower()
+#    bot_reply = 'hello'
+#    if x = 'start'
+#        bot_reply = 'Lets Begin? reply yes or no.'
+    
 
+    
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
         if type(msg) is dict:
