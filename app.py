@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import emoji
 from datetime import datetime
 
 import requests
@@ -34,6 +35,14 @@ def webhook():
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
 
+                if messaging_event.get("message"):  # if the message is of other than text
+                    if message_content = messaging_event["message"]["sticker_id"]:
+                        pass
+                    
+                if messaging_event.get("message"):  # if the message is of other than text
+                    if message_content = messaging_event["message"]["attachments"]:
+                        pass
+                
                 if messaging_event.get("message"):  # someone sent us a message
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -41,7 +50,7 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     send_message(sender_id, "Hi I am a bot!")
-
+                    
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
