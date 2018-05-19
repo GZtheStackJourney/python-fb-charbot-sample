@@ -83,16 +83,22 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
+message_text = "what"
+
 def get_message(message_received):
     x = message_received.lower()
-    bot_reply = 'hello, im bot'
-    if x == 'hello':
-        bot_reply = 'Hi im bot!'
-    elif x == 'start':
+    bot_reply = 'hello, im bot. to begin reply start'
+    intro_text = ['hello', 'hi', 'how are you']
+    start_text = ['start', 'begin']
+    agree_text = ['yes', 'yeah']
+    disagree_text = ['no', 'nah']
+    if any(w in x for w in intro_text):
+        bot_reply = 'Hi im bot! to begin reply start'
+    elif any(w in x for w in start_text):
         bot_reply = 'Lets Begin? reply yes or no only.'
-    elif x == 'yes':
+    elif any(w in x for w in agree_text):
         bot_reply = 'Game Starting...'
-    elif x == 'no':
+    elif any(w in x for w in disagree_text):
         bot_reply = 'Exiting.. Thank you.'
     else:
         bot_reply
