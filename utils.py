@@ -1,4 +1,4 @@
-import sys
+##import sys
 ##sys.path.append("C:\\Users\\Liew\\Envs\\test_bot\\Lib\\site-packages")
 from wit import Wit
 
