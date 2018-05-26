@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import random
+from utils import wit_response
 from datetime import datetime
 
 import requests
@@ -86,23 +87,39 @@ def send_message(recipient_id, message_text):
 
 def get_message(message_received):
     x = message_received.lower()
-    bot_reply = ["hello, Im bot. to begin reply start", "Good day, Im bot. reply start to begin"]
-    intro_text = ['hello', 'hi', 'how are you']
-    start_text = ['start', 'begin']
-    agree_text = ['yes', 'yeah']
-    disagree_text = ['no', 'nah']
-    if any(w in x for w in intro_text):
-        bot_reply = ["Hi im bot! to begin reply start", "Hi, to begin reply start"]
-    elif any(w in x for w in start_text):
-        bot_reply = ["Lets Begin? reply yes or no only.", "Beginning.. reply yes or no only."]
-    elif any(w in x for w in agree_text):
-        bot_reply = ["Game Starting...", "Starting"]
-    elif any(w in x for w in disagree_text):
-        bot_reply = ["Exiting.. Thank you.", "Exiting.."]
-    else:
-        bot_reply
+    response = None
 
-    return random.choice(bot_reply)
+    entity, vlaue = wit_response(x)
+
+    if entity == 'greetings':
+        response = "Hello, I'm bot. Reply your name."
+    elif entity == 'names':
+        response = "Hi {0}, is {0} your name? reply yes or no only.".format(str(value))
+    elif entity == 'agreement':
+        response = 'Good! have a good day!'
+    elif entity == 'disagreement':
+        response = 'What is your name then?'
+        
+    if entity == None:
+        response = "Sorry, I didn't get that."
+        return response
+##    bot_reply = ["hello, Im bot. to begin reply start", "Good day, Im bot. reply start to begin"]
+##    intro_text = ['hello', 'hi', 'how are you']
+##    start_text = ['start', 'begin']
+##    agree_text = ['yes', 'yeah']
+##    disagree_text = ['no', 'nah']
+##    if any(w in x for w in intro_text):
+##        bot_reply = ["Hi im bot! to begin reply start", "Hi, to begin reply start"]
+##    elif any(w in x for w in start_text):
+##        bot_reply = ["Lets Begin? reply yes or no only.", "Beginning.. reply yes or no only."]
+##    elif any(w in x for w in agree_text):
+##        bot_reply = ["Game Starting...", "Starting"]
+##    elif any(w in x for w in disagree_text):
+##        bot_reply = ["Exiting.. Thank you.", "Exiting.."]
+##    else:
+##        bot_reply
+##
+##    return random.choice(bot_reply)
     
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
