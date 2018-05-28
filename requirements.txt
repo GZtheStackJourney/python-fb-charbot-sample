@@ -4,9 +4,13 @@ click==6.7
 emoji==0.5.0
 ez-setup==0.9
 first==2.0.1
+Flask==1.0.2
 get==1.0.3
 gunicorn==19.8.1
 idna==2.6
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
 pip-tools==2.0.2
 pipenv==2018.5.18
 post==1.0.2
@@ -20,4 +24,5 @@ urllib3==1.22
 virtualenv==16.0.0
 virtualenv-clone==0.3.0
 wcwidth==0.1.7
+Werkzeug==0.14.1
 wit==5.1.0
