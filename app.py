@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import random
-from utils import wit_response
+from utils import wit_response, send_generic_message, get_reply
 from datetime import datetime
 
 import requests
@@ -44,7 +44,7 @@ def webhook():
                     if messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         sample_reply = get_message(message_text) # sends the message's text to function to find
-                        send_message(sender_id, sample_reply)    
+                        send_generic_message(sender_id, sample_reply)    
                     if messaging_event['message'].get('sticker_id'):
                         send_message(sender_id, "Hi I am a bot!")
                     if messaging_event['message'].get('attachments'):
@@ -87,19 +87,25 @@ def send_message(recipient_id, message_text):
 
 def get_message(message_received):
     x = message_received.lower()
-    response = None
 
-    entity, value = wit_response(x)
+    categories = wit_response(x)
+    element = get_reply(categories)
 
-    if entity == 'greetings':
-        response = "Hi I'm bot nice to meet you"
-    elif entity == 'location':
-        response = "I see, I like {0} too".format(str(value))
-
-    if entity == None:
-        response = "Sorry, I didnt get that."
-
-    return response
+    return element
+    
+##    response = None
+##
+##    entity, value = wit_response(x)
+##
+##    if entity == 'greetings':
+##        response = "Hi I'm bot nice to meet you"
+##    elif entity == 'location':
+##        response = "I see, I like {0} too".format(str(value))
+##
+##    if entity == None:
+##        response = "Sorry, I didnt get that."
+##
+##    return response
     
 ##    bot_reply = ["hello, Im bot. to begin reply start", "Good day, Im bot. reply start to begin"]
 ##    intro_text = ['hello', 'hi', 'how are you']
