@@ -56,7 +56,7 @@ def quick_replies(recipient_id, message_text):
               },
               {
                 "content_type":"text",
-                "title":"",
+                "title":"Type B",
                 "payload":"<POSTBACK_PAYLOAD>",
               }
             ]
