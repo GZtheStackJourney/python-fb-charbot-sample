@@ -6,7 +6,7 @@ from utils import wit_response
 from datetime import datetime
 
 import requests
-
+from flask import Flask, request
 
 def send_message(recipient_id, message_text):
 
