@@ -44,7 +44,7 @@ def webhook():
                     if messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         sample_reply = get_message(message_text) # sends the message's text to function to find
-                        send_message(sender_id, sample_reply)    
+                        quick_replies(sender_id, sample_reply)    
                     if messaging_event['message'].get('sticker_id'):
                         send_message(sender_id, "Hi I am a bot!")
                     if messaging_event['message'].get('attachments'):
@@ -84,6 +84,44 @@ def send_message(recipient_id, message_text):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
+def quick_replies(recipient_id, message_text):
+
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "text": message_text,
+            "quick_replies":[
+              {
+                "content_type":"text",
+                "title":"Search",
+                "payload":"<POSTBACK_PAYLOAD>",
+                "image_url":"http://example.com/img/red.png"
+              },
+              {
+                "content_type":"location"
+              }
+            ]
+        }
+    })
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+
 
 def get_message(message_received):
     x = message_received.lower()
