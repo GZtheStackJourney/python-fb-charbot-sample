@@ -52,11 +52,11 @@ def quick_replies(recipient_id, message_text):
                 "content_type":"text",
                 "title":"Type A",
                 "payload":"<POSTBACK_PAYLOAD>",
-                "image_url":"http://example.com/img/red.png"
+                # "image_url":"http://example.com/img/red.png"
               },
               {
                 "content_type":"text",
-                "title":"Type B",
+                "title":"",
                 "payload":"<POSTBACK_PAYLOAD>",
               }
             ]
