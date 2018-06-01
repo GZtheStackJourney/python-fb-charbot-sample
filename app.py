@@ -3,7 +3,7 @@ import sys
 import json
 import random
 from utils import wit_response
-# from method import send_message, quick_replies
+from method import send_message, quick_replies
 from datetime import datetime
 
 import requests
@@ -63,7 +63,7 @@ def webhook():
     return "ok", 200
 
 
-def send_message(recipient_id, message_text):
+# def send_message(recipient_id, message_text):
 
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
@@ -86,7 +86,7 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
-def quick_replies(recipient_id, message_text):
+# def quick_replies(recipient_id, message_text):
 
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
