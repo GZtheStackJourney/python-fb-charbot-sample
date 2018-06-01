@@ -55,7 +55,9 @@ def quick_replies(recipient_id, message_text):
                 "image_url":"http://example.com/img/red.png"
               },
               {
-                "content_type":"location"
+                "content_type":"text",
+                "title":"Type B",
+                "payload":"<POSTBACK_PAYLOAD>",
               }
             ]
         }
@@ -65,6 +67,8 @@ def quick_replies(recipient_id, message_text):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
+
 
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
