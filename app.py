@@ -3,7 +3,7 @@ import sys
 import json
 import random
 from utils import wit_response
-from method import *
+from method import send_message, quick_replies
 from datetime import datetime
 
 import requests
