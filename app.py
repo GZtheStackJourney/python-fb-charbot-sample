@@ -3,6 +3,7 @@ import sys
 import json
 import random
 from utils import wit_response
+from method import *
 from datetime import datetime
 
 import requests
@@ -62,77 +63,70 @@ def webhook():
     return "ok", 200
 
 
-def send_message(recipient_id, message_text):
+# def send_message(recipient_id, message_text):
 
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+#     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "text": message_text
-        }
-    })
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
+#     params = {
+#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+#     }
+#     headers = {
+#         "Content-Type": "application/json"
+#     }
+#     data = json.dumps({
+#         "recipient": {
+#             "id": recipient_id
+#         },
+#         "message": {
+#             "text": message_text
+#         }
+#     })
+#     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+#     if r.status_code != 200:
+#         log(r.status_code)
+#         log(r.text)
 
-def quick_replies(recipient_id, message_text):
+# def quick_replies(recipient_id, message_text):
 
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+#     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-    data = json.dumps({
-        "recipient": {
-            "id": recipient_id
-        },
-        "message": {
-            "text": message_text,
-            "quick_replies":[
-              {
-                "content_type":"text",
-                "title":"Search",
-                "payload":"<POSTBACK_PAYLOAD>",
-                "image_url":"http://example.com/img/red.png"
-              },
-              {
-                "content_type":"location"
-              }
-            ]
-        }
-    })
+#     params = {
+#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+#     }
+#     headers = {
+#         "Content-Type": "application/json"
+#     }
+#     data = json.dumps({
+#         "recipient": {
+#             "id": recipient_id
+#         },
+#         "message": {
+#             "text": message_text,
+#             "quick_replies":[
+#               {
+#                 "content_type":"text",
+#                 "title":"Type A",
+#                 "payload":"<POSTBACK_PAYLOAD>",
+#                 "image_url":"http://example.com/img/red.png"
+#               },
+#               {
+#                 "content_type":"location"
+#               }
+#             ]
+#         }
+#     })
 
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
+#     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+#     if r.status_code != 200:
+#         log(r.status_code)
+#         log(r.text)
 
 
 
 
 def get_message(message_received):
     x = message_received.lower()
-
-##    categories = wit_response(x)
-##    element = get_reply(categories)
-##
-##    return element
-    
     response = None
-
     entity, value = wit_response(x)
 
     if entity == 'greetings':
@@ -162,7 +156,7 @@ def get_message(message_received):
 ##        bot_reply
 ##
 ##    return random.choice(bot_reply)
-##    
+    
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
         if type(msg) is dict:
