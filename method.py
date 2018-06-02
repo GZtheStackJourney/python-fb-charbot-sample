@@ -4,6 +4,8 @@ import json
 import random
 from utils import wit_response
 from datetime import datetime
+from enum import Enum
+import logging
 
 import requests
 from flask import Flask, request
