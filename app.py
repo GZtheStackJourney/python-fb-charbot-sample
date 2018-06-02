@@ -20,6 +20,10 @@ def verify():
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
+
+        if request.args.get('init') and request.args.get('init') == 'true': # get started button
+            set_get_started_button_payload("get started")
+            return ''
         return request.args["hub.challenge"], 200
 
     return "Hello world", 200
@@ -32,6 +36,7 @@ def webhook():
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
+
 
     if data["object"] == "page":
 
@@ -62,7 +67,10 @@ def webhook():
                     pass
 
     return "ok", 200
-    
+ 
+
+
+
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
         if type(msg) is dict:
