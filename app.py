@@ -29,6 +29,7 @@ def webhook():
 
     # endpoint for processing incoming messaging events
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+        set_greeting_text("Welcome!")
         set_get_started_button_payload("get started")
 
 
@@ -67,8 +68,7 @@ def webhook():
                     if messaging_event['postback'].get('payload'):
                         payload_text = messaging_event["postback"]["payload"]
                         if payload_text == "get started":
-                            print("hello")
-                            set_greeting_text("Welcome to my page, to begin reply play.")
+                            send_message(sender_id, "Welcome to my page, to begin reply play.")
 
     return "ok", 200
  

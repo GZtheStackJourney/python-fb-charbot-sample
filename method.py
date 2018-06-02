@@ -82,7 +82,7 @@ def set_greeting_text(message_text):
         data = json.dumps({
                  "setting_type":"greeting",
                  "greeting":{
-                    "text":"Hi {{user_first_name}}! " + message_text
+                    "text":"Hi {{user_full_name}}!" + " " + message_text
                   }
                 })
 
