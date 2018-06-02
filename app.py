@@ -49,7 +49,7 @@ def webhook():
                     if messaging_event['message'].get('quick_reply'):
                         message_text = messaging_event["message"]["quick_reply"]["payload"]
                         message_text2 = messaging_event["message"]["text"]
-                        get_response(sender_id, message_text)
+                        get_response(sender_id, message_text, message_text2)
                     elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         get_message(sender_id, message_text) # sends the message's text to function to find
@@ -71,7 +71,7 @@ def webhook():
                     if messaging_event['postback'].get('payload'):
                         payload_text = messaging_event["postback"]["payload"]
                         if payload_text == "get started":
-                            send_message(sender_id, "Hi {{user_full_name}}, welcome to my page, to begin reply play.")
+                            send_message(sender_id, "Hi, welcome to my page, to begin reply play.")
 
                 # for message_info in messaging_event["message"]:
                 #         message_text = message_info["quick_reply"][0]

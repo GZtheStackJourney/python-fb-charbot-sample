@@ -22,9 +22,10 @@ def get_message(recipient_id, message_received):
     return send_message(profile_id, response)
 
 
-def get_response(recipient_id, message_received):
+def get_response(recipient_id, message_received, message_received2=None):
 
 	x = message_received
+	income = message_received2
 	profile_id = recipient_id
 
 	if x == "Q1 A":
@@ -33,6 +34,15 @@ def get_response(recipient_id, message_received):
 	elif x == "Q1 B":
 		response = "Are you keen in social politics?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
+	elif x == "Q2 A" or x == "Q2 B":
+		response = "Will you be willing to test our products?"
+		answers = [QuickReply("Yes", "Q3 A"), QuickReply("No", "Q3 B")]
+	elif x == "Q3 A":
+		response = "Whats your yearly income range?"
+		answers = [QuickReply("30k - 100k", "Q3 A"), QuickReply("above 100k", "Q3 B")]
+	elif x == "Q3 B":
+		response = "Thank you for taking part. For more info visit below."
+		answers = [QuickReply("Yes", "Q3 A"), QuickReply("No", "Q3 B")]
 	else:
 		response = "Sorry, I didnt get that."
 		return send_message(profile_id, response)
