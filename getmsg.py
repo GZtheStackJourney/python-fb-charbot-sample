@@ -25,7 +25,8 @@ def get_message(recipient_id, message_received):
 def get_response(recipient_id, message_received):
 
 	x = message_received
-
+	profile_id = recipient_id
+	
 	if x == "Q1 A":
 		response = "Are you active in social media?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
