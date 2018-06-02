@@ -84,7 +84,7 @@ class QuickReply:
 
 def send_buttons(recipient_id, title, button_list):
 
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=text))
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=title))
     buttons = [button.to_dict() for button in button_list]
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
