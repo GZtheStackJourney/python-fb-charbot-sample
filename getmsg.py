@@ -39,10 +39,11 @@ def get_response(recipient_id, message_received, message_received2=None):
 		answers = [QuickReply("Yes", "Q3 A"), QuickReply("No", "Q3 B")]
 	elif x == "Q3 A":
 		response = "Whats your yearly income range?"
-		answers = [QuickReply("30k - 100k", "Q3 A"), QuickReply("above 100k", "Q3 B")]
+		answers = [QuickReply("30k - 100k", "Q4 A"), QuickReply("above 100k", "Q4 B")]
 	elif x == "Q3 B":
 		response = "Thank you for taking part. For more info visit below."
-		answers = [QuickReply("Yes", "Q3 A"), QuickReply("No", "Q3 B")]
+		answers = ActionButton(ButtonType.WEB_URL, "Admin FB", "https://www.facebook.com/testpageauto123/")
+		return send_buttons(profile_id, response, answers)
 	else:
 		response = "Sorry, I didnt get that."
 		return send_message(profile_id, response)
