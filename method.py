@@ -10,6 +10,7 @@ import logging
 import requests
 from flask import Flask, request
 
+
 ATTACHMENT_FIELD = "attachment"
 TYPE_FIELD = "type"
 TEMPLATE_TYPE_FIELD = "template_type"
@@ -47,7 +48,7 @@ class QuickReply:
             reply_dict[TITLE_FIELD] = self.title
         if self.image_url:
             reply_dict[IMAGE_FIELD] = self.image_url
-        logger.debug(reply_dict)
+        log(reply_dict)
         return reply_dict
 
 def send_message(recipient_id, message_text):
