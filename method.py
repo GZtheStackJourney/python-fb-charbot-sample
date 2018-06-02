@@ -80,15 +80,13 @@ def set_greeting_text(message_text):
             "Content-Type": "application/json"
         }
         data = json.dumps({
-                 "greeting":[
-				    {
-				      "locale":"default",
-				      "text":"Hello {{user_first_name}}!" + message_text
-				    }
-				  ]
+                 "setting_type":"greeting",
+                 "greeting":{
+                    "text":"Hi {{user_first_name}}! " + message_text
+                  }
                 })
 
-        r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
+        r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
         if r.status_code != 200:
             log(r.status_code)
             log(r.text)
