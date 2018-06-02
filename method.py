@@ -59,12 +59,12 @@ def set_get_started_button_payload(payload):
 	        "Content-Type": "application/json"
 	    }
 	    data = json.dumps({
-	            "get_started":{
-				    "payload": payload
-				  }
+	    		"setting_type": "call_to_actions",
+                "thread_state": "new_thread",
+                "call_to_actions": [{"payload": payload}]
 	            })
 
-	    r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
+	    r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
 	    if r.status_code != 200:
 	        log(r.status_code)
 	        log(r.text)
