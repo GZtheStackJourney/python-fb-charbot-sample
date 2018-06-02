@@ -93,6 +93,9 @@ def send_buttons(recipient_id, title, button_list):
         "Content-Type": "application/json"
     }
     data = json.dumps({
+            "recipient": {
+                "id": recipient_id
+            },
             "message": {
                     "attachment": {
                         TYPE_FIELD: AttachmentType.TEMPLATE.value,
@@ -105,7 +108,7 @@ def send_buttons(recipient_id, title, button_list):
                 }
             })
 
-    r = requests.post("https://graph.facebook.com/v2.6/me/message_attachments", params=params, headers=headers, data=data)
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
