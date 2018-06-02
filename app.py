@@ -70,7 +70,7 @@ def webhook():
                             send_message(sender_id, "Welcome to my page, to begin reply play.")
 
                 for message_info in messaging_event["message"]:
-                    message_text = messaging_event["quick_reply"][0]["payload"]
+                    message_text = messaging_event["quick_reply"][0]
                     get_response(sender_id, message_text)
 
     return "ok", 200
