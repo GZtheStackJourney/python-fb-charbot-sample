@@ -17,7 +17,7 @@ def get_message(recipient_id, message_received):
     	return send_quick_replies(profile_id, response, answers)
 
     if entity == None:
-        response = "Sorry, I didnt get that."
+        response = "Sorry, I didnt get that. To begin survey reply play."
 
     return send_message(profile_id, response)
 
@@ -45,7 +45,8 @@ def get_response(recipient_id, message_received, message_received2=None):
 		answers = [ActionButton(ButtonType.WEB_URL, "Admin FB", "https://www.facebook.com/testpageauto123/")]
 		return send_buttons(profile_id, response, answers)
 	else:
-		response = "Sorry, I didnt get that."
-		return send_message(profile_id, response)
+		response = "Sorry, I didnt get that. For enquiries please contact below."
+		answers = [ActionButton(ButtonType.WEB_URL, "Admin FB", "https://www.facebook.com/testpageauto123/")]
+		return send_buttons(profile_id, response, answers)
 
 	return send_quick_replies(profile_id, response, answers)
