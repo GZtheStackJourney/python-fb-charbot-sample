@@ -46,7 +46,7 @@ def webhook():
                     if messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         sample_reply = get_message(message_text) # sends the message's text to function to find
-                        quick_replies(sender_id, sample_reply)    
+                        send_quick_replies(sender_id, sample_reply, [QuickReply("Type A", "Q1 A"), QuickReply("Type B", "Q1 B")])    
                     if messaging_event['message'].get('sticker_id'):
                         send_message(sender_id, "Hi I am a bot!")
                     if messaging_event['message'].get('attachments'):
@@ -62,22 +62,6 @@ def webhook():
                     pass
 
     return "ok", 200
-
-
-# def get_message(message_received):
-#     x = message_received.lower()
-#     response = None
-#     entity, value = wit_response(x)
-
-#     if entity == 'greetings':
-#         response = "Hi I'm bot nice to meet you"
-#     elif entity == 'location':
-#         response = "I see, I like {0} too".format(str(value))
-
-#     if entity == None:
-#         response = "Sorry, I didnt get that."
-
-#     return response
     
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
