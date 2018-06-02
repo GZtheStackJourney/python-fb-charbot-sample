@@ -60,7 +60,14 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+
+                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                    recipient_id = messaging_event["recipient"]["id"]
+
+                    if messaging_event['postback'].get('payload'):
+                        payload_text = messaging_event["postback"]["payload"]
+                        if payload_text = "get started":
+                            set_greeting_text(sender_id, "Welcome to my page, to begin reply play.")
 
     return "ok", 200
  
