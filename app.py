@@ -54,7 +54,7 @@ def webhook():
                     if messaging_event['message'].get('attachments'):
                         pass
                     if messaging_event['message'].get('quick_reply'):
-                        message_text = messaging_event["message"]["quick_reply"][0]
+                        message_text = messaging_event["message"]["quick_reply"]["payload"]
                         get_response(sender_id, message_text)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
