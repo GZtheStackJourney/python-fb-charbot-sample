@@ -53,7 +53,10 @@ def webhook():
                         pass
                     if messaging_event['message'].get('attachments'):
                         pass
-                        
+                    if messaging_event['message'].get('quick_reply'):
+                        message_text = messaging_event["message"]["quick_reply"][0]
+                        get_response(sender_id, message_text)
+
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -69,9 +72,9 @@ def webhook():
                         if payload_text == "get started":
                             send_message(sender_id, "Welcome to my page, to begin reply play.")
 
-                for message_info in messaging_event["message"]:
-                        message_text = message_info["quick_reply"][0]
-                        get_response(sender_id, message_text)
+                # for message_info in messaging_event["message"]:
+                #         message_text = message_info["quick_reply"][0]
+                #         get_response(sender_id, message_text)
 
     return "ok", 200
  
