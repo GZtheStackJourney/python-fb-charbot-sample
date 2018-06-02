@@ -48,8 +48,8 @@ def webhook():
                     
                     if messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
-                        sample_reply = get_message(message_text) # sends the message's text to function to find
-                        send_quick_replies(sender_id, sample_reply, [QuickReply("Type A", "Q1 A"), QuickReply("Type B", "Q1 B")])    
+                        get_message(sender_id, message_text) # sends the message's text to function to find
+                        # send_quick_replies(sender_id, sample_reply, [QuickReply("Type A", "Q1 A"), QuickReply("Type B", "Q1 B")])    
                     if messaging_event['message'].get('sticker_id'):
                         send_message(sender_id, "Hi I am a bot!")
                     if messaging_event['message'].get('attachments'):

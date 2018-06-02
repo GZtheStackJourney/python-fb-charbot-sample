@@ -20,6 +20,6 @@ def wit_response(message_text):
     return (entity, value)
 
     
-##print(wit_response("I live in Malaysia"))
+#print(wit_response("I live in Malaysia"))
 
 
