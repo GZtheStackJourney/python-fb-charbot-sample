@@ -71,10 +71,8 @@ def set_get_started_button_payload(payload):
 	        log(r.status_code)
 	        log(r.text)
 
-def set_greeting_text(recipient_id, message_text):
+def set_greeting_text(message_text):
 
-        log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
-        
         params = {
             "access_token": os.environ["PAGE_ACCESS_TOKEN"]
         }

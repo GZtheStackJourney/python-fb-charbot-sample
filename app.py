@@ -30,6 +30,7 @@ def webhook():
     # endpoint for processing incoming messaging events
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         set_get_started_button_payload("get started")
+        set_greeting_text("Welcome to my page, to begin reply play.")
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
@@ -60,14 +61,13 @@ def webhook():
                     pass
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                    pass
+                    # sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                    # recipient_id = messaging_event["recipient"]["id"]
 
-                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    recipient_id = messaging_event["recipient"]["id"]
-
-                    if messaging_event['postback'].get('payload'):
-                        payload_text = messaging_event["postback"]["payload"]
-                        if payload_text == "get started":
-                            set_greeting_text(sender_id, "Welcome to my page, to begin reply play.")
+                    # if messaging_event['postback'].get('payload'):
+                    #     payload_text = messaging_event["postback"]["payload"]
+                    #     if payload_text == "get started":
 
     return "ok", 200
  
