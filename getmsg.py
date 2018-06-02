@@ -28,10 +28,10 @@ def get_response(recipient_id, message_received):
 
 	if x == "Q1 A":
 		response = "Are you active in social media?"
-    	answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
-    elif x == "Q1 B":
+		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
+	elif x == "Q1 B":
     	response = "Are you keen in social politics"
-    	answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
+		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
 
 
-    return send_quick_replies(profile_id, response, answers)
+	return send_quick_replies(profile_id, response, answers)
