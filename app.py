@@ -40,7 +40,7 @@ def webhook():
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
-                
+
                 if messaging_event.get("message"):  # someone sent us a message
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
@@ -49,11 +49,10 @@ def webhook():
                     if messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         get_message(sender_id, message_text) # sends the message's text to function to find
-                        # send_quick_replies(sender_id, sample_reply, [QuickReply("Type A", "Q1 A"), QuickReply("Type B", "Q1 B")])    
                     if messaging_event['message'].get('sticker_id'):
-                        send_message(sender_id, "Hi I am a bot!")
+                        pass
                     if messaging_event['message'].get('attachments'):
-                        send_message(sender_id, "Hi I am a bot!")
+                        pass
                         
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -69,6 +68,12 @@ def webhook():
                         payload_text = messaging_event["postback"]["payload"]
                         if payload_text == "get started":
                             send_message(sender_id, "Welcome to my page, to begin reply play.")
+
+                for message_info in messaging_event["message"]
+                
+                    if message_info['quick_reply'].get('payload'):
+                        message_text = messaging_event["quick_reply"]["payload"]
+                        get_response(sender_id, message_text)
 
     return "ok", 200
  
