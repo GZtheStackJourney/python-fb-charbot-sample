@@ -46,16 +46,16 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     
-                    if messaging_event['message'].get('text'):
+                    if messaging_event['message'].get('quick_reply'):
+                        message_text = messaging_event["message"]["quick_reply"]["payload"]
+                        get_response(sender_id, message_text)
+                    elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         get_message(sender_id, message_text) # sends the message's text to function to find
                     if messaging_event['message'].get('sticker_id'):
                         pass
                     if messaging_event['message'].get('attachments'):
                         pass
-                    if messaging_event['message'].get('quick_reply'):
-                        message_text = messaging_event["message"]["quick_reply"]["payload"]
-                        get_response(sender_id, message_text)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass

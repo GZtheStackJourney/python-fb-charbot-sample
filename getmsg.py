@@ -26,13 +26,15 @@ def get_response(recipient_id, message_received):
 
 	x = message_received
 	profile_id = recipient_id
-	
+
 	if x == "Q1 A":
 		response = "Are you active in social media?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
 	elif x == "Q1 B":
 		response = "Are you keen in social politics"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
-
+	else:
+		response = "Sorry, I didnt get that."
+		return send_message(profile_id, response)
 
 	return send_quick_replies(profile_id, response, answers)
