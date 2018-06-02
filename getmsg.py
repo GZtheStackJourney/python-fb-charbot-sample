@@ -15,6 +15,8 @@ def get_message(recipient_id, message_received):
     	response = "Ok lets begin. What is your age range?"
     	answers = [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")]
     	return send_quick_replies(profile_id, response, answers)
+    else
+    	response = "Sorry, I didnt get that."
 
     if entity == None:
         response = "Sorry, I didnt get that."
