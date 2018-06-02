@@ -110,7 +110,7 @@ def quick_replies(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
-def send_quick_replies(recipient_id, title, reply_list):
+def send_quick_replies(recipient_id, message_text, reply_list):
         log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
         params = {
@@ -127,7 +127,7 @@ def send_quick_replies(recipient_id, title, reply_list):
                         "id": recipient_id
                     },
                     "message": {
-                        "text": title,
+                        "text": message_text,
                         "quick_replies": replies
                     }
         })
