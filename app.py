@@ -3,7 +3,7 @@ import sys
 import json
 import random
 from utils import wit_response
-from getmsg import get_message
+from getmsg import get_message, get_response
 from method import *
 from datetime import datetime
 
