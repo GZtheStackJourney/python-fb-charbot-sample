@@ -69,7 +69,7 @@ def webhook():
                         if payload_text == "get started":
                             send_message(sender_id, "Welcome to my page, to begin reply play.")
 
-                for message_info in messaging_event["message"]
+                for message_info in messaging_event["message"]:
                 
                     if message_info['quick_reply'].get('payload'):
                         message_text = messaging_event["quick_reply"]["payload"]
