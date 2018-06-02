@@ -66,7 +66,7 @@ def webhook():
 
                     if messaging_event['postback'].get('payload'):
                         payload_text = messaging_event["postback"]["payload"]
-                        if payload_text = "get started":
+                        if payload_text == "get started":
                             set_greeting_text(sender_id, "Welcome to my page, to begin reply play.")
 
     return "ok", 200
