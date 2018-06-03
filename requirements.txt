@@ -6,6 +6,7 @@ enum34==1.1.6
 ez-setup==0.9
 first==2.0.1
 Flask==1.0.2
+Flask-SQLAlchemy==2.3.2
 get==1.0.3
 gunicorn==19.8.1
 idna==2.6
@@ -16,11 +17,13 @@ pip-tools==2.0.2
 pipenv==2018.5.18
 post==1.0.2
 prompt-toolkit==1.0.15
+psycopg2==2.7.4
 public==1.0.3
 query-string==1.0.2
 request==1.0.2
 requests==2.18.4
 six==1.11.0
+SQLAlchemy==1.2.8
 urllib3==1.22
 virtualenv==16.0.0
 virtualenv-clone==0.3.0
