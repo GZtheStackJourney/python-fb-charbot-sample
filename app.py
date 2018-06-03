@@ -6,14 +6,14 @@ from utils import wit_response
 from getmsg import get_message, get_response
 from method import *
 from datetime import datetime
-# from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 import requests
 from flask import Flask, request
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-# db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET'])
 def verify():
