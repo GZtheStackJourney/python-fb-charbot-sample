@@ -7,14 +7,18 @@ from getmsg import get_message, get_response
 from method import *
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from app import db
 
 import requests
 from flask import Flask, request
 
+app = Flask(__name__)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+db = SQLAlchemy(app)
+
 class User(db.model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    name = db.Column(db.String(80), unique=True)
     qnum = db.Column(db.String(80))
 
     def __init__(self, name, qnum):
@@ -24,10 +28,8 @@ class User(db.model):
     def __repr__(self):
         return '<Name %r>' % self.name
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
+db.create_all()
+db.session.commit()
 
 @app.route('/', methods=['GET'])
 def verify():
