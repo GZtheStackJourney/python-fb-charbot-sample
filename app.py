@@ -11,6 +11,18 @@ from flask_sqlalchemy import SQLAlchemy
 import requests
 from flask import Flask, request
 
+class User(db.model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    qnum = db.Column(db.String(80))
+
+    def __init__(self, name, qnum):
+        self.name = name
+        self.qnum = qnum
+
+    def __repr__(self):
+        return '<Name %r>' % self.name
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
