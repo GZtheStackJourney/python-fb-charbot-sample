@@ -7,6 +7,7 @@ from getmsg import get_message, get_response
 from method import *
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from app import db
 
 import requests
 from flask import Flask, request
