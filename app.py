@@ -64,6 +64,18 @@ def webhook():
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+
+                    #query the db about the id, if no create a new one
+                    check_user = User.query.filter_by(name=sender_id).first()
+                    if not (check_User is None) {
+                        get_q = check_user.qnum
+                    }else {
+                        new_user = User(sender_id, 'q1')
+                        db.session.add(new_user)
+                        db.session.commit()
+                    }
+                    #if there is an id add to variable, query which question the id is at and add to an variable
+                    #update data base by variable and use dot syntax to alter the value.
                     
                     if messaging_event['message'].get('quick_reply'):
                         message_text = messaging_event["message"]["quick_reply"]["payload"]
@@ -92,12 +104,11 @@ def webhook():
                         if payload_text == "get started":
                             send_message(sender_id, "Hi, welcome to my page, to begin reply play.")
 
-                # for message_info in messaging_event["message"]:
-                #         message_text = message_info["quick_reply"][0]
-                #         get_response(sender_id, message_text)
-
     return "ok", 200
  
+
+#add recipient id and payload to qnum to database
+#if no id create in db, create new id
 
 
 
