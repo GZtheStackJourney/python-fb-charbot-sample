@@ -67,12 +67,13 @@ def webhook():
 
                     #query the db about the id, if no create a new one
                     check_user = User.query.filter_by(name=sender_id).first()
-                    if check_User is None:
-                        new_user = User(sender_id, 'q1')
-                        db.session.add(new_user)
-                        db.session.commit()
-                    else:
-                        get_q = check_user.qnum
+                    print check_user
+                    # if check_User is None:
+                    #     new_user = User(sender_id, 'q1')
+                    #     db.session.add(new_user)
+                    #     db.session.commit()
+                    # else:
+                    #     get_q = check_user.qnum
                         
                     #if there is an id add to variable, query which question the id is at and add to an variable
                     #update data base by variable and use dot syntax to alter the value.
