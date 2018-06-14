@@ -72,7 +72,7 @@ def webhook():
                         print get_q
                     else:
                         print check_user
-                        new_user = User(sender_id, 'q1')
+                        new_user = User(sender_id, None)
                         db.session.add(new_user)
                         db.session.commit()
                         
@@ -83,8 +83,10 @@ def webhook():
                         message_text = messaging_event["message"]["quick_reply"]["payload"]
                         message_text2 = messaging_event["message"]["text"]
                         get_response(sender_id, message_text, message_text2)
+                        print(get_response.newq)
                     elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
+                        ## if new_user.qnum is not an empty string then sender_avoids() else below
                         get_message(sender_id, message_text) # sends the message's text to function to find
                     if messaging_event['message'].get('sticker_id'):
                         pass

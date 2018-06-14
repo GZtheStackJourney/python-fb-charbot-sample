@@ -21,7 +21,6 @@ def get_message(recipient_id, message_received):
 
     return send_message(profile_id, response)
 
-
 def get_response(recipient_id, message_received, message_received2=None):
 
 	payload_id = message_received
@@ -31,9 +30,11 @@ def get_response(recipient_id, message_received, message_received2=None):
 	if payload_id == "Q1 A":
 		response = "Are you active in social media?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
+		get_response.newq = "q1a"
 	elif payload_id == "Q1 B":
 		response = "Are you keen in social politics?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
+		get_response.newq = "q1b"
 	elif payload_id == "Q2 A" or payload_id == "Q2 B":
 		response = "Will you be willing to test our products?"
 		answers = [QuickReply("Yes", "Q3 A"), QuickReply("No", "Q3 B")]
@@ -50,3 +51,20 @@ def get_response(recipient_id, message_received, message_received2=None):
 		return send_buttons(profile_id, response, answers)
 
 	return send_quick_replies(profile_id, response, answers)
+
+# def sender_avoids(profile_id, qnum):
+
+# 	q_number = qnum
+# 	response = None
+# 	profile_id = recipient_id
+
+# 	if q_number == 'q1':
+# 		response = "What is your age range?"
+#     	answers = [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")]
+#     if q_number == 'q2':
+#     if q_number == 'q3':
+#     if q_number == 'q4':
+#     if q_number == 'q5':
+
+
+#     return send_quick_replies(profile_id, response, answers)
