@@ -83,8 +83,6 @@ def webhook():
                         message_text = messaging_event["message"]["quick_reply"]["payload"]
                         message_text2 = messaging_event["message"]["text"]
                         get_response(sender_id, message_text, message_text2)
-                        get_q = get_response.newq
-                        db.session.commit()
                         print(get_response.newq)
                     elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
@@ -112,6 +110,9 @@ def webhook():
                         payload_text = messaging_event["postback"]["payload"]
                         if payload_text == "get started":
                             send_quick_replies(sender_id, "Hi, welcome to my page, to begin reply play.", [QuickReply("Play", "start")])
+
+                get_q = get_response.newq #update database
+                db.session.commit()
 
     return "ok", 200
  
