@@ -65,23 +65,23 @@ def sender_avoids(profile_id, qnum):
   response = None
   profile_id = recipient_id
 
-    if q_number == 'q1':
-        response = "Please choose one below"
-        answers = [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")]
-    elif q_number == 'q1a':
-    	response = "Please choose one below"
+	if q_number == 'q1':
+		response = "Please choose one below"
+		answers = [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")]
+	elif q_number == 'q1a':
+		response = "Please choose one below"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
-    elif q_number == 'q1b':
-    	response = "Are you keen in social politics?"
+	elif q_number == 'q1b':
+		response = "Are you keen in social politics?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
-    elif q_number == 'q2':
-    	response = "Will you be willing to test our products?"
+	elif q_number == 'q2':
+		response = "Will you be willing to test our products?"
 		answers = [QuickReply("Yes", "Q3 A"), QuickReply("No", "Q3 B")]
-    elif q_number == 'q3a':
-    	response = "Whats your yearly income range?"
+	elif q_number == 'q3a':
+		response = "Whats your yearly income range?"
 		answers = [QuickReply("30k - 100k", "Q4 A"), QuickReply("above 100k", "Q4 B")]
-    elif q_number == None:
-    	response = "How may I help you ?"
+	elif q_number == None:
+		response = "How may I help you ?"
 		answers = [QuickReply("30k - 100k", "Q4 A"), QuickReply("above 100k", "Q4 B")]
 
     return send_quick_replies(profile_id, response, answers)
