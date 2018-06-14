@@ -84,7 +84,8 @@ def webhook():
                         message_text2 = messaging_event["message"]["text"]
                         get_response(sender_id, message_text, message_text2)
                         print(get_response.newq)
-                        get_q = get_response.newq #update database
+                        current_user = User.query.filter_by(name=sender_id).first()
+                        current_user.qnum = get_response.newq #update database
                         db.session.commit()
                     elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
