@@ -106,7 +106,7 @@ def webhook():
                     if messaging_event['postback'].get('payload'):
                         payload_text = messaging_event["postback"]["payload"]
                         if payload_text == "get started":
-                            send_message(sender_id, "Hi, welcome to my page, to begin reply play.")
+                            send_quick_replies(sender_id, "Hi, welcome to my page, to begin reply play.", [QuickReply("Play", "start")])
 
     return "ok", 200
  

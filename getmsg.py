@@ -27,7 +27,11 @@ def get_response(recipient_id, message_received, message_received2=None):
 	income = message_received2
 	profile_id = recipient_id
 
-	if payload_id == "Q1 A":
+	if payload_id == "start":
+		response = "Ok lets begin. What is your age range?"
+    	answers = [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")]
+    	get_response.newq = "q1"
+	elif payload_id == "Q1 A":
 		response = "Are you active in social media?"
 		answers = [QuickReply("Yes", "Q2 A"), QuickReply("No", "Q2 B")]
 		get_response.newq = "q1a"
