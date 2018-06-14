@@ -59,7 +59,7 @@ def get_response(recipient_id, message_received, message_received2=None):
 
 	return send_quick_replies(profile_id, response, answers)
 
-def sender_avoids(profile_id, qnum):
+def sender_avoids(recipient_id, qnum):
 
 	q_num = qnum
 	response = None
