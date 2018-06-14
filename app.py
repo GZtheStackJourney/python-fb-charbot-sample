@@ -84,6 +84,8 @@ def webhook():
                         message_text2 = messaging_event["message"]["text"]
                         get_response(sender_id, message_text, message_text2)
                         print(get_response.newq)
+                        get_q = get_response.newq #update database
+                        db.session.commit()
                     elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         ## if new_user.qnum is not an empty string then sender_avoids() else below
@@ -111,8 +113,6 @@ def webhook():
                         if payload_text == "get started":
                             send_quick_replies(sender_id, "Hi, welcome to my page, to begin reply play.", [QuickReply("Play", "start")])
 
-                get_q = get_response.newq #update database
-                db.session.commit()
 
     return "ok", 200
  
