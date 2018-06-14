@@ -3,7 +3,7 @@ import sys
 import json
 import random
 from utils import wit_response
-from getmsg import get_message, get_response
+from getmsg import get_message, get_response, sender_avoids
 from method import *
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
@@ -83,11 +83,16 @@ def webhook():
                         message_text = messaging_event["message"]["quick_reply"]["payload"]
                         message_text2 = messaging_event["message"]["text"]
                         get_response(sender_id, message_text, message_text2)
+                        get_q = get_response.newq
+                        db.session.commit()
                         print(get_response.newq)
                     elif messaging_event['message'].get('text'):
                         message_text = messaging_event["message"]["text"]  # the message's text
                         ## if new_user.qnum is not an empty string then sender_avoids() else below
-                        get_message(sender_id, message_text) # sends the message's text to function to find
+                        if not (get_q is None):
+                            sender_avoids(sender_id, get_q)
+                        else:
+                            get_message(sender_id, message_text) # sends the message's text to function to find
                     if messaging_event['message'].get('sticker_id'):
                         pass
                     if messaging_event['message'].get('attachments'):
