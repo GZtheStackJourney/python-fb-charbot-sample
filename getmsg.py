@@ -61,9 +61,9 @@ def get_response(recipient_id, message_received, message_received2=None):
 
 def sender_avoids(profile_id, qnum):
 
-  q_num = qnum
-  response = None
-  profile_id = recipient_id
+	q_num = qnum
+	response = None
+	profile_id = recipient_id
 
 	if q_number == 'q1':
 		response = "Please choose one below"
@@ -84,4 +84,4 @@ def sender_avoids(profile_id, qnum):
 		response = "How may I help you ?"
 		answers = [QuickReply("30k - 100k", "Q4 A"), QuickReply("above 100k", "Q4 B")]
 
-    return send_quick_replies(profile_id, response, answers)
+	return send_quick_replies(profile_id, response, answers)
