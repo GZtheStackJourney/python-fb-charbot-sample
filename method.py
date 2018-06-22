@@ -115,7 +115,7 @@ def send_buttons(recipient_id, title, button_list):
 
 def set_get_started_button_payload(payload):
 		log("success")
-	    params = {
+		params = {
 	        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
 	    }
 	    headers = {
