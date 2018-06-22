@@ -116,23 +116,23 @@ def send_buttons(recipient_id, title, button_list):
 def set_get_started_button_payload(payload):
 		log("success")
 		params = {
-	        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+			"access_token": os.environ["PAGE_ACCESS_TOKEN"]
+		}
+		headers = {
+			"Content-Type": "application/json"
 	    }
-	    headers = {
-	        "Content-Type": "application/json"
-	    }
-	    data = json.dumps({
-	    		"setting_type": "call_to_actions",
-                "thread_state": "new_thread",
-                "call_to_actions": [{"payload": payload}]
+		data = json.dumps({
+				"setting_type": "call_to_actions",
+				"thread_state": "new_thread",
+				"call_to_actions": [{"payload": payload}]
 
 
-	            })
+				})
 
-	    r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
-	    if r.status_code != 200:
-	        log(r.status_code)
-	        log(r.text)
+		r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
+		if r.status_code != 200:
+			log(r.status_code)
+			log(r.text)
 
 def set_greeting_text(message_text):
 
