@@ -114,7 +114,6 @@ def send_buttons(recipient_id, title, button_list):
         log(r.text)
 
 def set_get_started_button_payload(payload):
-		log("success")
 		params = {
 			"access_token": os.environ["PAGE_ACCESS_TOKEN"]
 		}
@@ -227,8 +226,6 @@ def typing(recipient_id, on=True):
 		log(r.text)
 
 def set_persistent_menu(Payload):
-
-	print("persistent_menu")
 	params = {
 		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
 	}
