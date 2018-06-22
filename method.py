@@ -225,6 +225,41 @@ def typing(recipient_id, on=True):
 		log(r.status_code)
 		log(r.text)
 
+def set_persistent_menu(Payload):
+
+	params = {
+		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
+	}
+	headers = {
+		"Content-Type": "application/json"
+	}
+	data = json.dumps({
+			"persistent_menu":[
+				{
+					"locale":"default",
+					"composer_input_disabled": true,
+					"call_to_actions":[
+						{
+							"title":"Do Survey",
+							"type":"postback",
+							"payload":Payload
+						},
+						{
+							"type":"web_url",
+							"title":"Visit Page",
+							"url":"https://www.messenger.com/",
+							"webview_height_ratio":"full"
+						}
+					]
+				}
+			]
+		})
+
+	r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
+	if r.status_code != 200:
+		log(r.status_code)
+		log(r.text)
+
 
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
     try:
