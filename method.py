@@ -227,6 +227,7 @@ def typing(recipient_id, on=True):
 
 def set_persistent_menu(Payload):
 
+	print("persistent_menu")
 	params = {
 		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
 	}
