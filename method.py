@@ -238,7 +238,7 @@ def set_persistent_menu(Payload):
 			"persistent_menu":[
 				{
 					"locale":"default",
-					"composer_input_disabled": false,
+					"composer_input_disabled": true,
 					"call_to_actions":[
 						{
 							"title":"Do Survey",
