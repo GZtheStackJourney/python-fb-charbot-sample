@@ -233,23 +233,19 @@ def set_persistent_menu(Payload):
 		"Content-Type": "application/json"
 	}
 	data = json.dumps({
-			"persistent_menu":[
+			"setting_type" : "call_to_actions",
+			"thread_state" : "existing_thread",
+			"call_to_actions":[
 				{
-					"locale":"default",
-					"composer_input_disabled": true,
-					"call_to_actions":[
-						{
-							"title":"Do Survey",
-							"type":"postback",
-							"payload":Payload
-						},
-						{
-							"type":"web_url",
-							"title":"Visit Page",
-							"url":"https://www.messenger.com/",
-							"webview_height_ratio":"full"
-						}
-					]
+					"title":"Do Survey",
+					"type":"postback",
+					"payload":Payload
+				},
+				{
+					"type":"web_url",
+					"title":"Visit Page",
+					"url":"https://www.facebook.com/",
+					"webview_height_ratio":"full"
 				}
 			]
 		})
