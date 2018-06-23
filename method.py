@@ -233,20 +233,25 @@ def set_persistent_menu(Payload):
 		"Content-Type": "application/json"
 	}
 	data = json.dumps({
-			"setting_type" : "call_to_actions",
-			"thread_state" : "existing_thread",
-			"call_to_actions":[
+		"persistent_menu":[
 				{
-					"type":"postback",
-					"title":"Do Survey",
-					"payload":Payload
-				},
-				{
-					"type":"web_url",
-					"title":"Visit Page",
-					"url":"https://www.facebook.com/"
+					"locale":"default",
+					"composer_input_disabled": true,
+					"call_to_actions":[
+						{
+							"type":"postback",
+							"title":"Do Survey",
+							"payload":Payload
+						},
+						{
+							"type":"web_url",
+							"title":"Visit Page",
+							"url":"https://www.facebook.com/"
+						}
+					]
 				}
 			]
+			
 		})
 
 	r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
