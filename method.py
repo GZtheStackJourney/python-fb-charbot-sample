@@ -225,7 +225,7 @@ def typing(recipient_id, on=True):
 		log(r.status_code)
 		log(r.text)
 
-def set_persistent_menu(Payload):
+def set_get_started_menu(Payload):
 	params = {
 		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
 	}
@@ -234,8 +234,24 @@ def set_persistent_menu(Payload):
 	}
 	data = json.dumps({
 		"get_started":{
-			"payload":"get started"
-		},
+			"payload":Payload
+		}
+			
+	})
+
+	r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
+	if r.status_code != 200:
+		log(r.status_code)
+		log(r.text)
+
+def set_persistent_menu(Payload):
+	params = {
+		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
+	}
+	headers = {
+		"Content-Type": "application/json"
+	}
+	data = json.dumps({
 		"persistent_menu":[
 			{
 				"locale":"default",
