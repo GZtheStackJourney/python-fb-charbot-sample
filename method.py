@@ -235,7 +235,7 @@ def set_persistent_menu(Payload):
 	data = json.dumps({
 		"get_started":{
 			"payload":"get started"
-		}
+		},
 		"persistent_menu":[
 				{
 					"locale":"default",
