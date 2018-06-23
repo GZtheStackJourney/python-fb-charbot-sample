@@ -48,7 +48,7 @@ def webhook():
 
     # endpoint for processing incoming messaging events
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-		set_get_started_button_payload("get started")
+		# set_get_started_button_payload("get started")
 		set_persistent_menu("start")
 		set_greeting_text("Welcome!")
 
