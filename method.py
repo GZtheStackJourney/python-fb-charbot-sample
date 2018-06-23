@@ -237,23 +237,29 @@ def set_persistent_menu(Payload):
 			"payload":"get started"
 		},
 		"persistent_menu":[
-				{
-					"locale":"default",
-					"composer_input_disabled": true,
-					"call_to_actions":[
-						{
-							"type":"postback",
-							"title":"Do Survey",
-							"payload":Payload
-						},
-						{
-							"type":"web_url",
-							"title":"Visit Page",
-							"url":"https://www.facebook.com/"
-						}
-					]
-				}
-			]
+			{
+				"locale":"default",
+				"composer_input_disabled": true,
+				"call_to_actions":[
+					{
+						"title":"My Account",
+						"type":"nested",
+						"call_to_actions":[
+							{
+								"type":"postback",
+								"title":"Do Survey",
+								"payload":Payload
+							},
+							{
+								"type":"web_url",
+								"title":"Visit Page",
+								"url":"https://www.facebook.com/"
+							}
+						]
+					}
+				]
+			}
+		]
 			
 		})
 
