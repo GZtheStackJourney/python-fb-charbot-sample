@@ -113,7 +113,7 @@ def webhook():
                     if messaging_event['postback'].get('payload'):
                         payload_text = messaging_event["postback"]["payload"]
                         if payload_text == "get started":
-                            send_quick_replies(sender_id, "Hi, welcome to my page, to begin reply play.", [QuickReply("Play", "start")])
+                            send_message(sender_id, "Hi, welcome to my page, you can chat with me or select Do Survey below")
                         elif payload_text == "start":
                             send_quick_replies(sender_id, "Ok lets begin. What is your age range?", [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")])
 
