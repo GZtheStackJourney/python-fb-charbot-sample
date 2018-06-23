@@ -263,7 +263,7 @@ def set_persistent_menu(Payload):
 			{
 				"type":"web_url",
 				"title":"Visit Page",
-				"url":"https://www.messenger.com/",
+				"url":"https://www.facebook.com/testpageauto123/?ref=aymt_homepage_panel",
 				"webview_height_ratio":"full"
 			}
 		]
