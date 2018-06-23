@@ -237,15 +237,14 @@ def set_persistent_menu(Payload):
 			"thread_state" : "existing_thread",
 			"call_to_actions":[
 				{
-					"title":"Do Survey",
 					"type":"postback",
+					"title":"Do Survey",
 					"payload":Payload
 				},
 				{
 					"type":"web_url",
 					"title":"Visit Page",
-					"url":"https://www.facebook.com/",
-					"webview_height_ratio":"full"
+					"url":"https://www.facebook.com/"
 				}
 			]
 		})
