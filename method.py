@@ -265,6 +265,28 @@ def set_persistent_menu(Payload):
 				"title":"Visit Page",
 				"url":"https://www.facebook.com/testpageauto123/?ref=aymt_homepage_panel",
 				"webview_height_ratio":"full"
+			},
+			{
+				"title":"More Tools",
+				"type":"nested",
+				"call_to_actions":[
+					{
+						"title":"Show Templates",
+						"type":"postback",
+						"payload":"SHOW_TEMPLATES"
+					},
+					{
+						"title":"Contact Info",
+						"type":"postback",
+						"payload":"CONTACT_INFO_PAYLOAD"
+					},
+					{
+						"type":"web_url",
+						"title":"Latest News",
+						"url":"https://news.google.com",
+						"webview_height_ratio":"full"
+					}
+				]
 			}
 		]
 			
