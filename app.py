@@ -110,9 +110,9 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]
 
-					if messaging_event['postback'].get('payload'):
-						payload_text = messaging_event["postback"]["payload"]
-						if payload_text == "get started":
+                    if messaging_event['postback'].get('payload'):
+                        payload_text = messaging_event["postback"]["payload"]
+                        if payload_text == "get started":
 							send_quick_replies(sender_id, "Hi, welcome to my page, to begin reply play.", [QuickReply("Play", "start")])
 						elif payload_text == "start":
 							send_quick_replies(sender_id, "Ok lets begin. What is your age range?", [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")])
