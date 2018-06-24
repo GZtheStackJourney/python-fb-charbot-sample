@@ -267,18 +267,13 @@ def set_persistent_menu(Payload):
 				"webview_height_ratio":"full"
 			},
 			{
-				"title":"More Tools",
 				"type":"nested",
+				"title":"More Tools",
 				"call_to_actions":[
 					{
 						"title":"Show Templates",
 						"type":"postback",
 						"payload":"SHOW_TEMPLATES"
-					},
-					{
-						"title":"Contact Info",
-						"type":"postback",
-						"payload":"CONTACT_INFO_PAYLOAD"
 					},
 					{
 						"type":"web_url",
