@@ -280,7 +280,7 @@ def set_get_started_menu(Payload):
 # 		log(r.status_code)
 # 		log(r.text)
 
-def set_persistent_menu(Payload):
+def set_persistent_menu(Payload, true=True):
 	params = {
 		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
 	}
