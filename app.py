@@ -11,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 import requests
 from flask import Flask, request
 
+# https://cryptic-refuge-79635.herokuapp.com/
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -57,7 +58,7 @@ def webhook():
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
-        set_persistent_menu("start")
+        # set_persistent_menu("start")
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
