@@ -59,7 +59,7 @@ def webhook():
 
     if data["object"] == "page":
         # remove_persistent_menu()
-        set_persistent_menu("start")
+        # set_persistent_menu("start")
 
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:

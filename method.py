@@ -17,6 +17,7 @@ TEMPLATE_TYPE_FIELD = "template_type"
 TEXT_FIELD = "text"
 TITLE_FIELD = "title"
 SUBTITLE_FIELD = "subtitle"
+ITEM_FIELD = "item_url"
 IMAGE_FIELD = "image_url"
 BUTTONS_FIELD = "buttons"
 PAYLOAD_FIELD = "payload"
@@ -45,6 +46,26 @@ class ButtonType(Enum):
     WEB_URL = "web_url"
     POSTBACK = "postback"
 
+class GenericElement:
+    def __init__(self, title, subtitle, image_url, buttons):
+        self.title = title
+        self.subtitle = subtitle
+        self.item_url = item_url
+        self.image_url = image_url
+        self.buttons = buttons
+
+    def to_dict(self):
+        element_dict = {BUTTONS_FIELD: [
+            button.to_dict() for button in self.buttons]}
+        if self.title:
+            element_dict[TITLE_FIELD] = self.title
+        if self.subtitle:
+            element_dict[SUBTITLE_FIELD] = self.subtitle
+        if self.item_url:
+            element_dict[ITEM_FIELD] = self.item_url
+        if self.image_url:
+            element_dict[IMAGE_FIELD] = self.image_url
+        return element_dict
 
 class ActionButton:
     def __init__(self, button_type, title, url=None, payload=None): #button_type: WEB_URL or POSTBACK
@@ -81,6 +102,34 @@ class QuickReply:
             reply_dict[IMAGE_FIELD] = self.image_url
         log(reply_dict)
         return reply_dict
+
+def send_generic(recipient_id, element_list):
+	elements = [element.to_dict() for element in element_list]
+	params = {
+		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
+	}
+	headers = {
+		"Content-Type": "application/json"
+	}
+	data = json.dumps({
+			"recipient": {
+				"id": recipient_id
+			},
+			"message": {
+					"attachment": {
+						TYPE_FIELD: AttachmentType.TEMPLATE.value,
+						PAYLOAD_FIELD: {
+							TEMPLATE_TYPE_FIELD: TemplateType.GENERIC.value,
+							ELEMENTS_FIELD: elements
+						}
+					}
+				}
+			})
+
+	r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+	if r.status_code != 200:
+		log(r.status_code)
+		log(r.text)
 
 def send_buttons(recipient_id, title, button_list):
 
