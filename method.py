@@ -267,21 +267,9 @@ def set_persistent_menu(Payload):
 				"webview_height_ratio":"full"
 			},
 			{
-				"type":"nested",
-				"title":"More Tools",
-				"call_to_actions":[
-					{
-						"title":"Show Templates",
-						"type":"postback",
-						"payload":"SHOW_TEMPLATES"
-					},
-					{
-						"type":"web_url",
-						"title":"Latest News",
-						"url":"https://news.google.com",
-						"webview_height_ratio":"full"
-					}
-				]
+				"title":"Show Templates",
+				"type":"postback",
+				"payload":"SHOW_TEMPLATES"
 			}
 		]
 			
