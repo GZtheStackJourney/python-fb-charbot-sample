@@ -49,12 +49,12 @@ def get_response(recipient_id, message_received, message_received2=None):
 		get_response.newq = "q3a"
 	elif payload_id == "Q3 B" or payload_id == "Q4 A" or payload_id == "Q4 B":
 		response = "Thank you for taking part. For more info visit below."
-		answers = [ActionButton(ButtonType.WEB_URL, "Admin FB", "https://www.facebook.com/testpageauto123/")]
+		answers = [GenericElement("Admin FB", "TestPageAuto FB feed", "https://www.facebook.com/testpageauto123/", "https://scontent.fkul13-1.fna.fbcdn.net/v/t1.0-9/36034614_180903916096270_6211548163522691072_n.jpg?_nc_cat=0&oh=a487fff7e3584a3305182f9aac9a460c&oe=5BA4A698", [ActionButton(ButtonType.WEB_URL, "Visit Page", "https://www.facebook.com/testpageauto123/")])]
 		get_response.newq = None
 		return send_buttons(profile_id, response, answers)
 	else:
 		response = "Sorry, I didnt get that. For enquiries please contact below."
-		answers = [GenericElement("Admin FB", "TestPageAuto FB feed", "https://www.facebook.com/testpageauto123/", "https://scontent.fkul13-1.fna.fbcdn.net/v/t1.0-9/36034614_180903916096270_6211548163522691072_n.jpg?_nc_cat=0&oh=a487fff7e3584a3305182f9aac9a460c&oe=5BA4A698", [ActionButton(ButtonType.WEB_URL, "Visit Page", "https://www.facebook.com/testpageauto123/")])]
+		answers = [ActionButton(ButtonType.WEB_URL, "Admin FB", "https://www.facebook.com/testpageauto123/")]
 		return send_buttons(profile_id, response, answers)
 
 	return send_quick_replies(profile_id, response, answers)
