@@ -47,7 +47,7 @@ class ButtonType(Enum):
     POSTBACK = "postback"
 
 class GenericElement:
-    def __init__(self, title, subtitle, image_url, buttons):
+    def __init__(self, title, subtitle, item_url, image_url, buttons):
         self.title = title
         self.subtitle = subtitle
         self.item_url = item_url
