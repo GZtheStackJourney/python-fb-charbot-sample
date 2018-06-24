@@ -244,6 +244,42 @@ def set_get_started_menu(Payload):
 		log(r.status_code)
 		log(r.text)
 
+# def set_persistent_menu(Payload):
+# 	params = {
+# 		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
+# 	}
+# 	headers = {
+# 		"Content-Type": "application/json"
+# 	}
+# 	data = json.dumps({
+# 		"setting_type" : "call_to_actions",
+# 		"thread_state" : "existing_thread",
+# 		"call_to_actions":[
+# 			{
+# 				"title":"Do Survey",
+# 				"type":"postback",
+# 				"payload":Payload
+# 			},
+# 			{
+# 				"type":"web_url",
+# 				"title":"Visit Page",
+# 				"url":"https://www.facebook.com/testpageauto123/?ref=aymt_homepage_panel",
+# 				"webview_height_ratio":"full"
+# 			},
+# 			{
+# 				"title":"Show Templates",
+# 				"type":"postback",
+# 				"payload":"SHOW_TEMPLATES"
+# 			}
+# 		]
+			
+# 		})
+
+# 	r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
+# 	if r.status_code != 200:
+# 		log(r.status_code)
+# 		log(r.text)
+
 def set_persistent_menu(Payload):
 	params = {
 		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -252,34 +288,38 @@ def set_persistent_menu(Payload):
 		"Content-Type": "application/json"
 	}
 	data = json.dumps({
-		"setting_type" : "call_to_actions",
-		"thread_state" : "existing_thread",
-		"call_to_actions":[
+		"persistent_menu":[
 			{
-				"title":"Do Survey",
-				"type":"postback",
-				"payload":Payload
-			},
-			{
-				"type":"web_url",
-				"title":"Visit Page",
-				"url":"https://www.facebook.com/testpageauto123/?ref=aymt_homepage_panel",
-				"webview_height_ratio":"full"
-			},
-			{
-				"type":"nested",
-				"title":"More Tools",
+				"locale":"default",
+				"composer_input_disabled": true,
 				"call_to_actions":[
 					{
-						"title":"Show Templates",
+						"title":"Do Survey",
 						"type":"postback",
-						"payload":"SHOW_TEMPLATES"
+						"payload":Payload
 					},
 					{
 						"type":"web_url",
-						"title":"Latest News",
-						"url":"https://news.google.com",
+						"title":"Visit Page",
+						"url":"https://www.facebook.com/testpageauto123/?ref=aymt_homepage_panel",
 						"webview_height_ratio":"full"
+					},
+					{
+						"type":"nested",
+						"title":"More Tools",
+						"call_to_actions":[
+							{
+								"title":"Show Templates",
+								"type":"postback",
+								"payload":"SHOW_TEMPLATES"
+							},
+							{
+								"type":"web_url",
+								"title":"Latest News",
+								"url":"https://news.google.com",
+								"webview_height_ratio":"full"
+							}
+						]
 					}
 				]
 			}
@@ -287,7 +327,7 @@ def set_persistent_menu(Payload):
 			
 		})
 
-	r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
+	r = requests.post("https://graph.facebook.com/v2.6/me/messenger_profile", params=params, headers=headers, data=data)
 	if r.status_code != 200:
 		log(r.status_code)
 		log(r.text)
