@@ -267,9 +267,21 @@ def set_persistent_menu(Payload):
 				"webview_height_ratio":"full"
 			},
 			{
-				"title":"Show Templates",
-				"type":"postback",
-				"payload":"SHOW_TEMPLATES"
+				"type":"nested",
+				"title":"More Tools",
+				"call_to_actions":[
+					{
+						"title":"Show Templates",
+						"type":"postback",
+						"payload":"SHOW_TEMPLATES"
+					},
+					{
+						"type":"web_url",
+						"title":"Latest News",
+						"url":"https://news.google.com",
+						"webview_height_ratio":"full"
+					}
+				]
 			}
 		]
 			
@@ -279,6 +291,27 @@ def set_persistent_menu(Payload):
 	if r.status_code != 200:
 		log(r.status_code)
 		log(r.text)
+
+def remove_persistent_menu():
+	params = {
+		"access_token": os.environ["PAGE_ACCESS_TOKEN"]
+	}
+	headers = {
+		"Content-Type": "application/json"
+	}
+	data = json.dumps({
+		"setting_type" : "call_to_actions",
+		"thread_state" : "existing_thread",
+		"call_to_actions":[ ]
+			
+		})
+
+	r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=data)
+	if r.status_code != 200:
+		log(r.status_code)
+		log(r.text)
+
+
 
 
 def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
