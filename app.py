@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import random
+import time
 from utils import wit_response
 from getmsg import get_message, get_response, sender_avoids
 from method import *
@@ -69,6 +70,7 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     typing(sender_id)
+                    time.sleep(1)
                     #query the db about the id, if no create a new one
                     check_user = User.query.filter_by(name=sender_id).first()
                     if not (check_user is None):
@@ -119,7 +121,11 @@ def webhook():
                             send_message(sender_id, "Hi, welcome to my page, you can chat with me or select Do Survey below")
                         elif payload_text == "start":
                             send_quick_replies(sender_id, "Ok lets begin. What is your age range?", [QuickReply("18 - 30", "Q1 A"), QuickReply("31 - 60", "Q1 B")])
-
+                        elif payload_text == "SHOW_TEMPLATES":
+                        	answers = [GenericElement("Admin FB", "Thank you for taking part.", "https://www.facebook.com/testpageauto123/", "https://scontent.fkul13-1.fna.fbcdn.net/v/t1.0-9/36034614_180903916096270_6211548163522691072_n.jpg?_nc_cat=0&oh=a487fff7e3584a3305182f9aac9a460c&oe=5BA4A698", [ActionButton(ButtonType.WEB_URL, "Visit Page", "https://www.facebook.com/testpageauto123/")]), 
+                        	GenericElement("LYL", "Yi Ling", "https://www.facebook.com/ylprudentialinsurance", "https://scontent.fkul13-1.fna.fbcdn.net/v/t1.0-9/29573382_1197007067102233_5848571075711617259_n.jpg?_nc_cat=0&oh=d4a5fed2bfee272ee6a45996f4103729&oe=5BEC8558", [ActionButton(ButtonType.WEB_URL, "Message Yi Ling", "https://www.facebook.com/messages/t/695459533923658")]), 
+                        	GenericElement("LYT", "Yi Ting", "https://www.facebook.com/ivyliewprudentialagent/", "https://scontent.fkul13-1.fna.fbcdn.net/v/t1.0-9/28378087_1091917300948186_3375192295121555330_n.png?_nc_cat=0&_nc_eui2=AeFAAHgrRzYZ1ElQ9KolpooPp4w9w4r5dkxqh270E3dXeHRhEuvS5X0LPdVwBzadrybfEDXNchy4wK1hpGSmBo9qMmedozsTW_guXI71LDgZag&oh=f5fd32c9ca3f708e497a6ba655ef78c8&oe=5BAF3C11", [ActionButton(ButtonType.WEB_URL, "Visit Page", "https://www.facebook.com/ivyliewprudentialagent/")])]
+# SHOW_TEMPLATES
 
     return "ok", 200
  
