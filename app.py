@@ -69,8 +69,8 @@ def webhook():
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    typing(sender_id)
-                    time.sleep(2)
+                    typing(sender_id, True)
+                    time.sleep(3)
                     #query the db about the id, if no create a new one
                     check_user = User.query.filter_by(name=sender_id).first()
                     if not (check_user is None):
