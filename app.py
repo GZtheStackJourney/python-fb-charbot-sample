@@ -56,7 +56,7 @@ def webhook():
         # set_persistent_menu("start")
 
     data = request.get_json()
-    log(data)  # you may not want to log every incoming message in production, but it's good for testing
+    # log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
         # remove_persistent_menu()
