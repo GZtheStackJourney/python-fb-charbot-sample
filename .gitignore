@@ -1,2 +1,4 @@
 *.pyc
 .*
+api.txt
+__pycache__

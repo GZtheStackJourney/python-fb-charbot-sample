@@ -2,7 +2,7 @@
 ##sys.path.append("C:\\Users\\Liew\\Envs\\test_bot\\Lib\\site-packages")
 from wit import Wit
 
-access_token = "MWROYP2YAJFA2VQSKB5SHGR3PMJUP5G3"
+access_token = "YOUR_KEY"
 
 client = Wit(access_token = access_token)
 
